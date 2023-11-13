@@ -1,5 +1,5 @@
 {
-  "name": "microservice-middleware",
+  "name": "@davidlwatsonjr/microservice-middleware",
   "version": "1.0.0",
   "description": "Microservice middleware functionality",
   "main": "index.js",
