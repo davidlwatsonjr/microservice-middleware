@@ -1,0 +1,19 @@
+{
+  "name": "microservice-middleware",
+  "version": "1.0.0",
+  "description": "Microservice middleware functionality",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidlwatsonjr/microservice-middleware.git"
+  },
+  "author": "@davidlwatsonjr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davidlwatsonjr/microservice-middleware/issues"
+  },
+  "homepage": "https://github.com/davidlwatsonjr/microservice-middleware#readme"
+}
