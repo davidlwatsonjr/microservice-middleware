@@ -1,5 +1,5 @@
 const requestLogger = (req, res, next) => {
-  console.log(`${req.method} request for '${req.url}'`);
+  console.log(`${req.method} ${req.url} HTTP/${req.httpVersion}`);
   next();
 };
 
