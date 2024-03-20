@@ -1,8 +1,11 @@
 const crypto = require("crypto");
 
-const getCacheKey = (req, namespace = "memory-cache", headerKeys = []) => {
-  const url = req.originalUrl || req.url;
-  const { headers } = req;
+const getCacheKey = (
+  url,
+  namespace = "memory-cache",
+  headers = [],
+  headerKeys = [],
+) => {
   const headerString = headerKeys
     .map((key) => key + "=" + headers[key])
     .join("&");

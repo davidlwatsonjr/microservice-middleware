@@ -3,7 +3,8 @@ const { getCacheKey } = require("./lib/getCacheKey");
 
 const memoryCacher = (duration, namespace, headerKeys) => {
   return (req, res, next) => {
-    const cacheKey = getCacheKey(req, namespace, headerKeys);
+    const url = req.originalUrl || req.url;
+    const cacheKey = getCacheKey(url, namespace, req.headers, headerKeys);
     const cachedBody = memoryCache.get(cacheKey);
     if (cachedBody) {
       res.send(cachedBody);
