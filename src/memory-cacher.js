@@ -1,22 +1,9 @@
-const crypto = require("crypto");
 const memoryCache = require("memory-cache");
+const { getCacheKey } = require("./lib/getCacheKey");
 
-const memoryCacher = (
-  duration,
-  namespace = "memory-cache",
-  headerKeys = [],
-) => {
+const memoryCacher = (duration, namespace, headerKeys) => {
   return (req, res, next) => {
-    const url = req.originalUrl || req.url;
-    const { headers } = req;
-    const headerString = headerKeys
-      .map((key) => key + "=" + headers[key])
-      .join("&");
-    const cacheKeyString = `${namespace}:${url}:${headerString}`;
-    const cacheKey = crypto
-      .createHash("md5")
-      .update(cacheKeyString)
-      .digest("hex");
+    const cacheKey = getCacheKey(req, namespace, headerKeys);
     const cachedBody = memoryCache.get(cacheKey);
     if (cachedBody) {
       res.send(cachedBody);
