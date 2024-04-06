@@ -14,10 +14,11 @@ const memoryCacher = (duration, namespace, headerKeys) => {
     if (cachedBody) {
       res.send(cachedBody);
     } else {
-      res.sendResponse = res.send;
+      res.preMemoryCachedSendFn = res.send;
       res.send = (body) => {
         memoryCache.put(cacheKey, body, duration ? duration * 1000 : undefined);
-        res.sendResponse(body);
+        res.send = res.preMemoryCachedSendFn;
+        res.send(body);
       };
       next();
     }
