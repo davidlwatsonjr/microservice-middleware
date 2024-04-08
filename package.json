@@ -1,6 +1,6 @@
 {
   "name": "@davidlwatsonjr/microservice-middleware",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Microservice middleware functionality",
   "main": "index.js",
   "scripts": {
