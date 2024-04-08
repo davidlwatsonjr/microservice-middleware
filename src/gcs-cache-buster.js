@@ -1,7 +1,4 @@
-const {
-  getCacheKey,
-} = require("@davidlwatsonjr/microservice-middleware/src/lib/getCacheKey");
-const storage = require("../lib/google-cloud-storage");
+const { getCacheKey } = require("./lib/getCacheKey");
 
 const gcStorageCacheBuster = (bucketName, namespace, headerKeys, urls = []) => {
   let bucket;
@@ -26,7 +23,10 @@ const gcStorageCacheBuster = (bucketName, namespace, headerKeys, urls = []) => {
     urls.map((url) => {
       const cacheKey = getCacheKey(url, namespace, req.headers, headerKeys);
       const cacheFilename = `${namespace}/cache/${cacheKey}`;
-      return storage.deleteFile(cacheFilename);
+      return bucket
+        ?.file(cacheFilename)
+        .delete()
+        .catch(() => null);
     });
     next();
   };
